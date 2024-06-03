@@ -1,61 +1,46 @@
-//rnfs
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { Button, Card, TextInput, useThemeColor } from "./Themed";
+import { Feather } from "@expo/vector-icons";
 
 interface Props {
-    onSubmit: (content: string) => void;
+  onSubmit: (content: string) => void;
 }
 
 export default function AddPostForm({ onSubmit }: Props) {
-    const [content, setContent] = useState('');
-
-    return (
-        <View style={styles.container}>
-            <TextInput
-                placeholder="What's on your mind?"
-                value={content}
-                onChangeText={text => setContent(text)}
-                style={styles.input}
-            />
-            <TouchableOpacity 
-                onPress={() => {
-                    onSubmit(content);
-                    setContent('');
-                }} 
-                style={styles.button}
-            >
-                <Text style={styles.textButton}>Post</Text>
-            </TouchableOpacity>
-        </View>
-    )
+  const [content, setContent] = useState("");
+  const color = useThemeColor({}, "primary");
+  return (
+    <Card style={styles.container}>
+      <TextInput
+        value={content}
+        onChangeText={setContent}
+        placeholder="No que você está pensando?"
+      />
+      <Card style={styles.row}>
+        <TouchableOpacity>
+          <Feather name="image" size={24} color={color} />
+        </TouchableOpacity>
+        <Button
+          title="Publicar"
+          onPress={() => {
+            onSubmit(content);
+            setContent("");
+          }}
+        />
+      </Card>
+    </Card>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        padding: 20,
-        display: 'flex',
-        flexDirection: 'row',
-    },
-    input: {
-        width: '65%',
-        height: 40,
-        borderColor: '#eaeaea',
-        borderWidth: 1,
-        marginBottom: 20,
-        borderRadius: 10,
-        paddingLeft: 20,
-    },
-    button: {
-        width: '30%',
-        height: 40,
-        backgroundColor: '#43A5FF',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-        marginLeft: 20,
-    },
-    textButton: {
-        color: '#fff',
-    }
-})
+  container: {
+    width: "100%",
+    padding: 16,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+});
