@@ -14,7 +14,7 @@ export default function PostCard({ post }: Props) {
       {/* Header */}
       <Card style={styles.header}>
         <Image
-          source={{ uri: "https://picsum.photos/200" }}
+          source={{ uri: "https://www.thoughtco.com/thmb/uAj33yEBplPVl84Uc-axOjDDRzU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/mike-tyson-kicks-off-australia-speaking-tour-in-brisbane-156502182-5ce081ba44f640c8955e51aa1a939341.jpg" }}
           style={styles.avatar}
         />
         <Text style={styles.username}>Você</Text>
